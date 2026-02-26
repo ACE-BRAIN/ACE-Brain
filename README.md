@@ -22,7 +22,7 @@
   <img src="assets/teaser2.png" width="100%" alt="ACE-Brain Overview">
 </p>
 
-## 📑 Table of Contents
+## 📑 Contents
 
 - [News](#news)
 - [Introduction](#introduction)
