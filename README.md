@@ -22,21 +22,53 @@
   <img src="assets/teaser2.png" width="100%" alt="ACE-Brain Overview">
 </p>
 
+## 📑 Table of Contents
+
+- [News](#news)
+- [Introduction](#introduction)
+- [Key Features](#key-features)
+- [Method & Architecture](#method-architecture)
+- [Performance Highlights](#performance-highlights)
+  - [Full Benchmark List (24 Benchmarks)](#full-benchmark-list)
+- [Quick Start](#quick-start)
+  - [Installation](#installation)
+  - [Inference Example](#inference-example)
+- [Roadmap](#roadmap)
+- [Citation](#citation)
+- [Acknowledgements](#acknowledgements)
+- [Contributors](#contributors)
+- [Star History](#star-history)
+
+---
+
+<a id="news"></a>
 ## 🚀 News 
 
 - `2025/02/27`: 🔥 We open-source the model [ckpt](https://huggingface.co/ACE-Brain/ACE-Brain-8B/tree/main) and our technical report.
 
-## 🧠 Abstract
+<a id="introduction"></a>
+## 🧠 Introduction
 **ACE-Brain** is the first spatial-centric generalist brain that unifies **spatial cognition**, **autonomous driving**, **low-altitude sensing**, and **embodied interaction** within a single multi-modal large language model (MLLM). 
 
 Unlike traditional joint training that suffers from gradient interference or sequential training that incurs catastrophic forgetting, ACE-Brain introduces the **Scaffold-Specialize-Reconcile (SSR)** paradigm—establishing spatial intelligence as the universal bridge across heterogeneous embodiments.
 
-
+<a id="key-features"></a>
 ## 🔥 Key Features
 
 - **🧩 SSR Training Paradigm**: First pretrains a Spatial Expert as the shared anchor, then branches into isolated domain specialists, and finally reconciles via data-free merging.
 - **🏆 State-of-the-Art Performance**: Competitive or leading results on **24 benchmarks** spanning spatial intelligence, autonomous driving, UAV perception, and embodied interaction
 
+<a id="method-architecture"></a>
+## 🏗️ Method & Architecture
+
+ACE-Brain uses a unified vision-language autoregressive architecture: visual inputs (single image / multi-view images / video) are encoded by a **Vision Encoder + MLP Projector** into visual tokens and fed together with text instructions into the **LLM Decoder** for autoregressive generation. Training follows five stages: first building a **spatial scaffold** (Spatial Expert), then training **AD and UAV domain experts** separately, reconciling them via **data-free model merging** (e.g., WUDI) into a single model, and finally **embodied SFT** with optional **GRPO** reinforcement learning.
+
+<!-- Architecture / training pipeline figure: use assets/architecture.png, e.g. paper Figure 3 or training flow -->
+<p align="center">
+  <img src="assets/architecture.png" width="100%" alt="ACE-Brain Architecture / Training Pipeline">
+</p>
+
+<a id="performance-highlights"></a>
 ## 📊 Performance Highlights
 
 ACE-Brain-8B achieves superior performance across four domains:
@@ -52,10 +84,22 @@ ACE-Brain-8B achieves superior performance across four domains:
 | **Embodied** | RoboVQA | **64.6** | 34.5 (GPT-4o) | **+30.1** |
 | **Embodied** | EgoPlan-Bench2 | **55.3** | 44.7 (Qwen-VL-Max) | **+10.6** |
 
+<a id="full-benchmark-list"></a>
+### Full Benchmark List (24 Benchmarks)
 
+ACE-Brain is evaluated on the following 24 benchmarks across spatial cognition, autonomous driving, low-altitude sensing, and embodied interaction:
 
+| Domain | Benchmarks |
+|--------|------------|
+| **Spatial (7)** | VSI, MMSI, BLINK, SITE, SAT, MindCube, Multi3DRef |
+| **Autonomous Driving (6)** | MME-RealWorld, MAPLM, DriveAction, NuscenesQA, NuPlanQA, LingoQA |
+| **Low-Altitude (5)** | UrbanVideo-Bench, AircopBench, Avi-Math, Airspatial-VQA, HRVQA |
+| **Embodied (6)** | ERQA, RoboVQA, OpenEQA, EmbSpatial-Bench, EgoPlan-Bench2, EB-Habitat |
+
+<a id="quick-start"></a>
 ## 🚀 Quick Start
 
+<a id="installation"></a>
 ### Installation
 
 ```bash
@@ -64,6 +108,8 @@ conda activate acebrain
 pip install torch torchvision torchaudio
 pip install -e .
 ```
+
+<a id="inference-example"></a>
 ### Inference Example
 
 ```python
@@ -87,8 +133,7 @@ response = model.chat(tokenizer, msgs)
 print(response)  # "The black vehicle will keep going straight."
 ```
 
-
-
+<a id="roadmap"></a>
 ## 🗓️ Roadmap
 PRs welcome! 🤗
 - [√] **ACE-Brain v1.0**: SSR paradigm with 4-domain unification
@@ -96,7 +141,7 @@ PRs welcome! 🤗
 - [ ] **ACE-Brain 2.0**: Physics-infused continuous cognition with sub-pixel metric localization
 - [ ] **Meta-Embodiment**: Few-shot adaptation to novel robot morphologies via scaffold alignment -->
 
-
+<a id="citation"></a>
 ## 📖 Citation
 
 If you find ACE-Brain useful for your research and applications, please consider citing:
@@ -110,25 +155,19 @@ If you find ACE-Brain useful for your research and applications, please consider
 }
 ```
 
-
-
+<a id="acknowledgements"></a>
 ## 🙏 Acknowledgements
 
 This project is built upon [Qwen3-VL](https://github.com/QwenLM/Qwen3-VL) and benefits from the open-source embodied AI community. We thank the authors of [VSI-Bench](https://github.com/vision-x-nyu/thinking-in-space), [NuScenes](https://github.com/nutonomy/nuscenes-devkit), and [EgoPlan](https://github.com/ChenYi99/EgoPlan) for their excellent benchmarks.
 
+<a id="contributors"></a>
 ## 👥 Contributors
 
 <a href="https://github.com/ACE-Brain-Team/ACE-Brain/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=ACE-Brain-Team/ACE-Brain" />
 </a>
 
+<a id="star-history"></a>
 ## ⭐ Star History
 
-<a href="https://star-history.com/#ACE-Brain-Team/ACE-Brain&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ACE-Brain-Team/ACE-Brain&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=ACE-Brain-Team/ACE-Brain&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ACE-Brain-Team/ACE-Brain&type=Date" />
- </picture>
-</a>
-
+[![Star History Chart](https://api.star-history.com/svg?repos=ACE-Brain-Team/ACE-Brain&type=date&legend=top-left)](https://www.star-history.com/#ACE-Brain-Team/ACE-Brain&type=date&legend=top-left)
