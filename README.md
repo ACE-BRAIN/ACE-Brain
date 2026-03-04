@@ -117,10 +117,10 @@ from transformers import Qwen3VLForConditionalGeneration, AutoProcessor
 
 # default: Load the model on the available device(s)
 model = Qwen3VLForConditionalGeneration.from_pretrained(
-    "ACE-Brain/ACE-Brain-8B", dtype="auto", device_map="auto"
+    "ACE-Brain/ACE-Brain-0-8B", dtype="auto", device_map="auto"
 )
 
-processor = AutoProcessor.from_pretrained("ACE-Brain/ACE-Brain-8B")
+processor = AutoProcessor.from_pretrained("ACE-Brain/ACE-Brain-0-8B")
 
 messages = [
     {
